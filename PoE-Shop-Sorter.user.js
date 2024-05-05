@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Path of Exile shop Sorter
 // @namespace    pk-ap
-// @version      0.9
+// @version      1.0
 // @description  try to take over the world!
 // @author       pKajan
 // @match        https://www.pathofexile.com/shop/category/*
@@ -20,6 +20,10 @@
 
         // Step 2: Convert NodeList to array for easier manipulation
         var shopItems = Array.from(container.querySelectorAll('.shopItem'));
+        // Step 2a: Bundles -> diff class than rest
+        if(shopItems.length < 1){
+            shopItems = Array.from(container.querySelectorAll('.shopItemPackage'));
+        }
 
         // Step 3: Sort the array based on the price of each shopItem
         shopItems.sort((a, b) => {
